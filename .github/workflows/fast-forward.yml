@@ -1,0 +1,45 @@
+name: Fast-forward Aleo scope
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aleo-scope-fast-forward
+  cancel-in-progress: false
+
+jobs:
+  fast-forward:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout superproject
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: false
+
+      - name: Configure git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Fast-forward submodule pointers
+        run: |
+          set -euo pipefail
+          git submodule update --init --remote core/snarkVM core/snarkOS
+          git add .gitmodules core/snarkVM core/snarkOS
+
+      - name: Commit updates
+        run: |
+          if git diff --cached --quiet && git diff --quiet; then
+            echo "No Aleo scope updates."
+            exit 0
+          fi
+          git status --short
+          git commit -m "Fast-forward Aleo scope pointers"
+          git push
