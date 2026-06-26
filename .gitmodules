@@ -1,8 +1,0 @@
-[submodule "core/snarkVM"]
-	path = core/snarkVM
-	url = https://github.com/ProvableHQ/snarkVM.git
-	branch = staging
-[submodule "core/snarkOS"]
-	path = core/snarkOS
-	url = https://github.com/ProvableHQ/snarkOS.git
-	branch = staging

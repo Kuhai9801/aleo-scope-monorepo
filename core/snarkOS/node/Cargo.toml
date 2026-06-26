@@ -1,0 +1,187 @@
+[package]
+name = "snarkos-node"
+version = "4.7.3"
+authors = [ "The Aleo Team <hello@aleo.org>" ]
+description = "A node for a decentralized operating system"
+homepage = "https://aleo.org"
+repository = "https://github.com/ProvableHQ/snarkOS"
+keywords = [
+  "aleo",
+  "cryptography",
+  "blockchain",
+  "decentralized",
+  "zero-knowledge"
+]
+categories = [ "cryptography", "cryptography::cryptocurrencies", "os" ]
+license = "Apache-2.0"
+edition = "2024"
+
+[features]
+default = [ ]
+timer = [ "aleo-std/timer" ]
+locktick = [
+  "dep:locktick",
+  "snarkos-node-bft/locktick",
+  "snarkos-node-cdn/locktick",
+  "snarkos-node-consensus/locktick",
+  "snarkos-node-network/locktick",
+  "snarkos-node-rest/locktick",
+  "snarkos-node-router/locktick",
+  "snarkos-node-sync/locktick",
+  "snarkos-node-tcp/locktick",
+  "snarkos-utilities/locktick",
+  "snarkvm/locktick"
+]
+metrics = [
+  "snarkos-node-bft/metrics",
+  "snarkos-node-consensus/metrics",
+  "snarkos-node-router/metrics",
+  "snarkos-node-tcp/metrics"
+]
+history = [ "snarkos-node-rest/history", "snarkvm/history" ]
+history-staking-rewards = [ "snarkos-node-rest/history-staking-rewards", "snarkvm/history-staking-rewards" ]
+slipstream-plugins = [ "snarkos-node-rest/slipstream-plugins", "snarkvm/slipstream-plugins" ]
+telemetry = [ "snarkos-node-bft/telemetry", "snarkos-node-consensus/telemetry", "snarkos-node-rest/telemetry" ]
+cuda = [
+  "snarkvm/cuda",
+  "snarkos-account/cuda",
+  "snarkos-node-bft/cuda",
+  "snarkos-node-cdn/cuda",
+  "snarkos-node-consensus/cuda",
+  "snarkos-node-rest/cuda",
+  "snarkos-node-router/cuda",
+  "snarkos-node-sync/cuda"
+]
+serial = [
+  "snarkvm/serial",
+  "snarkos-node-bft/serial"
+]
+test = []
+test_network = [ "snarkos-node-bft/test_network", "snarkos-node-consensus/test_network", "snarkos-utilities/test_network" ]
+
+[dependencies.aleo-std]
+workspace = true
+
+[dependencies.anyhow]
+workspace = true
+
+[dependencies.async-trait]
+workspace = true
+
+[dependencies.bytes]
+workspace = true
+
+[dependencies.cfg-if]
+workspace = true
+
+[dependencies.colored]
+workspace = true
+
+[dependencies.futures-util]
+workspace = true
+features = [ "sink" ]
+
+[dependencies.locktick]
+workspace = true
+features = [ "parking_lot" ]
+optional = true
+
+[dependencies.lru]
+workspace = true
+
+[dependencies.num_cpus]
+workspace = true
+
+[dependencies.parking_lot]
+workspace = true
+
+[dependencies.rand]
+workspace = true
+
+[dependencies.http]
+workspace = true
+
+[dependencies.reqwest]
+workspace = true
+features = [ "json", "rustls" ]
+
+[dependencies.serde_json]
+workspace = true
+features = [ "preserve_order" ]
+
+[dependencies.snarkos-account]
+workspace = true
+
+[dependencies.snarkos-node-bft]
+workspace = true
+
+[dependencies.snarkos-node-cdn]
+workspace = true
+
+[dependencies.snarkos-node-consensus]
+workspace = true
+
+[dependencies.snarkos-node-network]
+workspace = true
+
+[dependencies.snarkos-node-rest]
+workspace = true
+
+[dependencies.snarkos-node-router]
+workspace = true
+
+[dependencies.snarkos-node-sync]
+workspace = true
+
+[dependencies.snarkos-node-tcp]
+workspace = true
+
+[dependencies.snarkos-utilities]
+workspace = true
+
+[dependencies.snarkvm]
+workspace = true
+
+[dependencies.time]
+workspace = true
+
+[dependencies.tokio]
+workspace = true
+features = [ "rt", "signal" ]
+
+[dependencies.tokio-stream]
+version = "=0.1"
+
+[dependencies.tokio-util]
+workspace = true
+
+[dependencies.tracing]
+workspace = true
+
+[dependencies.indexmap]
+workspace = true
+
+[dev-dependencies.deadline]
+version = "0.2"
+
+[dev-dependencies.paste]
+version = "1"
+
+[dev-dependencies.pea2pea]
+version = "0.49"
+
+[dev-dependencies.snarkos-node-router]
+workspace = true
+features = [ "test" ]
+
+[dev-dependencies.tracing-subscriber]
+workspace = true
+features = [ "env-filter", "fmt" ]
+
+[dev-dependencies.rand_chacha]
+workspace = true
+
+[package.metadata.cargo-machete]
+ignored = [
+  "serde_json", # Need to set preserve_order feature
+]

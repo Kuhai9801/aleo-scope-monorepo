@@ -1,4 +1,4 @@
-name: CodeQL full submodule scan
+name: CodeQL full source scan
 
 on:
   schedule:
@@ -11,7 +11,7 @@ permissions:
   security-events: write
 
 concurrency:
-  group: codeql-full-submodules
+  group: codeql-full-source
   cancel-in-progress: true
 
 jobs:
@@ -28,20 +28,10 @@ jobs:
           - rust
 
     steps:
-      - name: Checkout scope with submodules
+      - name: Checkout vendored scope
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          submodules: recursive
-
-      - name: Expand submodule history
-        run: |
-          git submodule foreach --recursive '
-            git fetch --all --tags --prune || true
-            if git rev-parse --is-shallow-repository | grep -qx true; then
-              git fetch --unshallow --tags --prune || true
-            fi
-          '
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
@@ -64,20 +54,10 @@ jobs:
           - python
 
     steps:
-      - name: Checkout scope with submodules
+      - name: Checkout vendored scope
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          submodules: recursive
-
-      - name: Expand submodule history
-        run: |
-          git submodule foreach --recursive '
-            git fetch --all --tags --prune || true
-            if git rev-parse --is-shallow-repository | grep -qx true; then
-              git fetch --unshallow --tags --prune || true
-            fi
-          '
 
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3

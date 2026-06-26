@@ -1,0 +1,69 @@
+[package]
+name = "snarkos-node-tcp"
+version = "4.7.3"
+authors = [ "The Aleo Team <hello@aleo.org>" ]
+description = "A TCP stack for a decentralized operating system"
+homepage = "https://aleo.org"
+repository = "https://github.com/ProvableHQ/snarkOS"
+keywords = [
+  "aleo",
+  "cryptography",
+  "blockchain",
+  "decentralized",
+  "zero-knowledge"
+]
+categories = [ "cryptography", "cryptography::cryptocurrencies", "os" ]
+license = "Apache-2.0"
+edition = "2024"
+
+[features]
+default = [ ]
+locktick = [ "dep:locktick", "snarkos-node-metrics/locktick" ]
+metrics = [ "dep:snarkos-node-metrics" ]
+
+[dependencies.async-trait]
+workspace = true
+
+[dependencies.bytes]
+workspace = true
+
+[dependencies.parking_lot]
+workspace = true
+
+[dependencies.futures-util]
+workspace = true
+features = [ "sink" ]
+
+[dependencies.locktick]
+workspace = true
+features = [ "parking_lot" ]
+optional = true
+
+[dependencies.snarkos-node-metrics]
+workspace = true
+optional = true
+
+[dependencies.once_cell]
+workspace = true
+features = [ "parking_lot" ]
+
+[dependencies.tokio]
+workspace = true
+features = [ "io-util", "net", "parking_lot", "rt", "sync", "time" ]
+
+[dependencies.tokio-util]
+workspace = true
+features = [ "codec" ]
+
+[dependencies.tracing]
+workspace = true
+
+[dependencies.thiserror]
+workspace = true
+
+[dependencies.anyhow]
+workspace = true
+
+[dev-dependencies.tokio]
+workspace = true
+features = [ "macros" ]

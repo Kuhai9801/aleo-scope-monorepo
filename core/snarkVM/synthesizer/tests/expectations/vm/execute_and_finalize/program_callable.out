@@ -1,0 +1,23 @@
+errors: []
+outputs:
+- execute: 'Process execution failed: Stack execution failed: Instruction (assert.neq self.caller self.signer;) at index 0 failed: Failed to evaluate: ''assert.neq'' failed: ''aleo1qr2ha4pfs5l28aze88yn6fhleeythklkczrule2v838uwj65n5gqxt9djx'' is equal to ''aleo1qr2ha4pfs5l28aze88yn6fhleeythklkczrule2v838uwj65n5gqxt9djx'' (should not be equal)'
+- verified: true
+  execute:
+    parent.aleo/foo:
+      outputs:
+      - '{"type":"public","id":"6589159049079730959464963638377500480469031300480744543790546637531605952570field","value":"aleo16w8t56s7v6ud7vu33fr388ph0dq0c7yhp597cyjt88rr3nultcyqcyk9yy"}'
+      - '{"type":"public","id":"5896155098095809857425746072650712518708736667262976404363501529985818444559field","value":"aleo1qr2ha4pfs5l28aze88yn6fhleeythklkczrule2v838uwj65n5gqxt9djx"}'
+      - '{"type":"public","id":"1586369577975284248301225919979725293161499786281906067648171513361362471980field","value":"aleo1qr2ha4pfs5l28aze88yn6fhleeythklkczrule2v838uwj65n5gqxt9djx"}'
+      - '{"type":"public","id":"4198757772134962605416667451958984168066094543658494937534264250164221364640field","value":"aleo1qr2ha4pfs5l28aze88yn6fhleeythklkczrule2v838uwj65n5gqxt9djx"}'
+  speculate: the execution was accepted
+  add_next_block: succeeded.
+additional:
+- {}
+- child_outputs:
+    child.aleo/foo:
+      outputs:
+      - '{"type":"public","id":"3981737492514976500903286435029962445526160547116746141595753765816622743761field","value":"aleo16w8t56s7v6ud7vu33fr388ph0dq0c7yhp597cyjt88rr3nultcyqcyk9yy"}'
+      - '{"type":"public","id":"4237647086808473367627550650460100778746771959885042096484797319272642375512field","value":"aleo1qr2ha4pfs5l28aze88yn6fhleeythklkczrule2v838uwj65n5gqxt9djx"}'
+    credits.aleo/fee_public:
+      outputs:
+      - '{"type":"future","id":"4350837191851577657620961599585078986104141611771096115027737817605391021188field","value":"{\n  program_id: credits.aleo,\n  function_name: fee_public,\n  arguments: [\n    aleo1qr2ha4pfs5l28aze88yn6fhleeythklkczrule2v838uwj65n5gqxt9djx,\n    2187u64\n  ]\n}"}'

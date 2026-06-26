@@ -1,0 +1,28 @@
+[package]
+name = "snarkos-account"
+version = "4.7.3"
+authors = [ "The Aleo Team <hello@aleo.org>" ]
+description = "Account for a decentralized operating system"
+homepage = "https://aleo.org"
+repository = "https://github.com/ProvableHQ/snarkOS"
+keywords = [
+  "aleo",
+  "cryptography",
+  "blockchain",
+  "decentralized",
+  "zero-knowledge"
+]
+categories = [ "cryptography", "cryptography::cryptocurrencies", "os" ]
+license = "Apache-2.0"
+edition = "2024"
+
+[features]
+cuda = [ "snarkvm/cuda" ]
+test_targets = [ "snarkvm/test_targets" ]
+
+[dependencies.colored]
+workspace = true
+
+[dependencies.snarkvm]
+workspace = true
+features = [ "console" ]

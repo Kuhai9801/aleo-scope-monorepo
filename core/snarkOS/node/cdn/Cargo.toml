@@ -1,0 +1,95 @@
+[package]
+name = "snarkos-node-cdn"
+version = "4.7.3"
+authors = [ "The Aleo Team <hello@aleo.org>" ]
+description = "A CDN client for a decentralized operating system"
+homepage = "https://aleo.org"
+repository = "https://github.com/ProvableHQ/snarkOS"
+keywords = [
+  "aleo",
+  "cryptography",
+  "blockchain",
+  "decentralized",
+  "zero-knowledge"
+]
+categories = [ "cryptography", "cryptography::cryptocurrencies", "os" ]
+license = "Apache-2.0"
+edition = "2024"
+
+[features]
+default = [ ]
+serial = [ 
+  "snarkos-node-metrics/locktick",
+  "snarkvm/serial",
+]
+locktick = [
+  "dep:locktick",
+  "snarkvm/locktick",
+  "snarkos-node-metrics/locktick",
+  "snarkos-utilities/locktick"
+]
+cuda = [ "snarkvm/cuda" ]
+metrics = [ "dep:snarkos-node-metrics" ]
+
+[dependencies.anyhow]
+workspace = true
+
+[dependencies.bincode]
+workspace = true
+
+[dependencies.colored]
+workspace = true
+
+[dependencies.locktick]
+workspace = true
+features = [ "parking_lot" ]
+optional = true
+
+[dependencies.parking_lot]
+workspace = true
+
+[dependencies.snarkos-node-metrics]
+workspace = true
+optional = true
+features = [ "metrics" ]
+
+[dependencies.snarkos-utilities]
+workspace = true
+
+[dependencies.rayon]
+workspace = true
+
+[dependencies.reqwest]
+workspace = true
+features = [ "rustls" ]
+
+[dependencies.serde]
+workspace = true
+
+[dependencies.serde_json]
+workspace = true
+features = [ "preserve_order" ]
+
+[dependencies.snarkvm]
+workspace = true
+features = [ "console", "ledger", "utilities" ]
+
+[dependencies.http]
+workspace = true
+
+[dependencies.tokio]
+workspace = true
+features = [ "rt" ]
+
+[dependencies.tracing]
+workspace = true
+
+[dev-dependencies.tokio]
+workspace = true
+features = [ "rt", "rt-multi-thread" ]
+
+[dev-dependencies.tokio-test]
+version = "0.4"
+
+[package.metadata.cargo-machete]
+ignored = ["serde"]

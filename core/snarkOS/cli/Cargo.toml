@@ -1,0 +1,187 @@
+[package]
+name = "snarkos-cli"
+version = "4.7.3"
+authors = [ "The Aleo Team <hello@aleo.org>" ]
+description = "Command-line interface for snarkOS"
+homepage = "https://aleo.org"
+repository = "https://github.com/ProvableHQ/snarkOS"
+keywords = [
+  "aleo",
+  "cryptography",
+  "blockchain",
+  "decentralized",
+  "zero-knowledge"
+]
+categories = [ "cryptography", "cryptography::cryptocurrencies", "os" ]
+license = "Apache-2.0"
+edition = "2024"
+
+[features]
+default = [ ]
+async = [ ]
+slipstream-plugins = [ "snarkos-node/slipstream-plugins" ]
+locktick = [
+  "dep:locktick",
+  "snarkos-display/locktick",
+  "snarkos-node/locktick",
+  "snarkos-node-cdn/locktick",
+  "snarkos-node-rest/locktick",
+  "snarkos-utilities/locktick",
+  "snarkvm/locktick"
+]
+metrics = [ "dep:snarkos-node-metrics", "snarkos-node/metrics" ]
+cuda = [
+  "snarkvm/cuda",
+  "snarkos-account/cuda",
+  "snarkos-node/cuda",
+  "snarkos-node-cdn/cuda",
+  "snarkos-node-rest/cuda"
+]
+test_targets = [ "snarkvm/test_targets" ]
+test_consensus_heights = [ "snarkvm/test_consensus_heights" ]
+test_network = [
+  "test_targets", 
+  "test_consensus_heights",
+  "snarkvm/dev-committee",
+  "snarkvm/dev-print"
+]
+serial = [
+  "snarkvm/serial",
+  "snarkos-node/serial",
+  "snarkos-display/serial",
+]
+tokio_console = [ "dep:console-subscriber", "tokio/tracing" ]
+
+[dependencies.aleo-std]
+workspace = true
+
+[dependencies.anstyle]
+version = "1"
+
+[dependencies.anyhow]
+workspace = true
+
+[dependencies.base64]
+workspace = true
+
+[dependencies.clap]
+workspace = true
+features = [ "derive", "color", "unstable-styles", "help", "cargo", "usage", "suggestions" ]
+
+[dependencies.colored]
+workspace = true
+
+[dependencies.console-subscriber]
+version = "0.5"
+optional = true
+
+[dependencies.crossterm]
+workspace = true
+
+[dependencies.indexmap]
+workspace = true
+features = [ "serde", "rayon" ]
+
+[dependencies.locktick]
+workspace = true
+features = [ "parking_lot" ]
+optional = true
+
+[dependencies.num_cpus]
+workspace = true
+
+[dependencies.parking_lot]
+workspace = true
+
+[dependencies.rand]
+workspace = true
+
+[dependencies.rand_chacha]
+workspace = true
+
+[dependencies.rayon]
+workspace = true
+
+[dependencies.rpassword]
+version = "7.4.0"
+
+[dependencies.self_update]
+version = "0.44"
+features = [ "archive-zip", "compression-zip-deflate" ]
+
+[dependencies.serde]
+workspace = true
+
+[dependencies.serde_json]
+workspace = true
+features = [ "preserve_order" ]
+
+[dependencies.snarkos-account]
+workspace = true
+
+[dependencies.snarkos-display]
+workspace = true
+
+[dependencies.snarkos-node]
+workspace = true
+
+[dependencies.snarkos-node-cdn]
+workspace = true
+
+[dependencies.snarkos-node-metrics]
+workspace = true
+optional = true
+
+[dependencies.snarkos-node-rest]
+workspace = true
+
+[dependencies.snarkos-utilities]
+workspace = true
+
+[dependencies.snarkvm]
+workspace = true
+features = [ "parameters", "circuit", "package" ]
+
+[dependencies.sys-info]
+version = "0.9"
+
+[dependencies.tempfile]
+version = "3"
+
+[dependencies.time]
+workspace = true
+
+[dependencies.thiserror]
+workspace = true
+
+[dependencies.tokio]
+workspace = true
+features = [ "rt" ]
+
+[dependencies.tracing]
+workspace = true
+
+[dependencies.tracing-subscriber]
+workspace = true
+features = [ "env-filter" ]
+
+[dependencies.ureq]
+version = "3"
+features = ["json"]
+default-features = true
+
+[dependencies.zeroize]
+version = "1"
+features = [ "derive" ]
+
+[dev-dependencies.snarkvm]
+workspace = true
+features = [ "test-helpers" ]
+
+[target."cfg(target_family = \"unix\")".dependencies.nix]
+version = "0.30"
+default-features = false
+features = [ "resource" ]
+
+[target.'cfg(unix)'.dependencies]
+rlimit = "0.11"
